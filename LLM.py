@@ -1,10 +1,6 @@
-from ollama import chat
+import ollama
 
-stream = chat(
-    model='gemma3:4b',
-    messages=[{'role': 'user', 'content': 'Why is the sky blue?'}],
-    stream=True,
-)
 
-for chunk in stream:
-  print(chunk['message']['content'], end='', flush=True)
+def pass_to_model(text):
+    response = ollama.chat(model='gemma3:4b', messages=[{'role' : 'user', 'content': text}])
+    return response['message']['content']
